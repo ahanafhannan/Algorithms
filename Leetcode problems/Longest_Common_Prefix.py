@@ -1,14 +1,19 @@
 def longest_common_prefix(strs):
     if not strs:
         return ""
-    prefix = strs[0]
-    for s in strs[1:]:
-        while not s.startswith(prefix):
-            prefix = prefix[:-1]
-            if not prefix:
-                return ""
+    if len(strs) == 1:
+        return strs[0]
+    common_prefix = ''
+    first_string=strs[0]
     
-    return prefix
+    for i in range(len(first_string)):
+        char = first_string[i]
+        for string in strs[1:]:
+            if i >= len(string) or string[i] != char:
+                return common_prefix
+        common_prefix += char
+    return common_prefix
+    
 if __name__ == "__main__":  
     strings = ["flower", "flow", "flight"]
     result = longest_common_prefix(strings)
